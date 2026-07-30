@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Medical Chatbot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Serif+4:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Medical triage assistant</p>
+          <h1>Describe the symptoms. Get a safer next step.</h1>
+          <p class="lede">
+            This mini chatbot asks about symptoms, helps judge urgency, and tells you when a hospital visit is the safer choice.
+          </p>
+          <div class="badges">
+            <span>Rule-based triage</span>
+            <span>Flask backend</span>
+            <span>Google API key ready</span>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="card-title">Status</div>
+          <p>{% if google_api_key_configured %}Google API key detected in the environment.{% else %}Google API key placeholder is ready in <strong>.env</strong>.{% endif %}</p>
+          <p>Start by telling the bot what hurts, how long it has been happening, and whether the pain is severe.</p>
+        </div>
+      </section>
+
+      <section class="chat-panel">
+        <header class="chat-header">
+          <div>
+            <p class="chat-kicker">Chat</p>
+            <h2>Medical chatbot</h2>
+          </div>
+          <div class="pill">Do not use for emergencies</div>
+        </header>
+
+        <div class="chat-log" id="chatLog" aria-live="polite"></div>
+
+        <div class="quick-actions" id="quickActions"></div>
+
+        <form class="composer" id="chatForm">
+          <input id="messageInput" type="text" placeholder="Type symptoms, e.g. fever and cough for 3 days" autocomplete="off" />
+          <button type="submit">Send</button>
+        </form>
+
+        <p class="fine-print" id="disclaimer">
+          This chatbot is for general guidance only and is not a medical diagnosis.
+        </p>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

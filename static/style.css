@@ -1,0 +1,314 @@
+:root {
+  color-scheme: light;
+  --bg: #f6efe8;
+  --panel: rgba(255, 255, 255, 0.76);
+  --panel-strong: #fffdf9;
+  --text: #1f1a17;
+  --muted: #6f625a;
+  --accent: #c94f3d;
+  --accent-strong: #982f22;
+  --accent-soft: #f9d4cc;
+  --border: rgba(63, 40, 31, 0.12);
+  --shadow: 0 24px 80px rgba(91, 53, 39, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(201, 79, 61, 0.18), transparent 28%),
+    radial-gradient(circle at right center, rgba(124, 152, 196, 0.16), transparent 24%),
+    linear-gradient(180deg, #f9f3ee 0%, #f4ebe2 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(rgba(31, 26, 23, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+.shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 40px 0 48px;
+  display: grid;
+  gap: 24px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.4fr 0.9fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.hero-copy,
+.hero-card,
+.chat-panel {
+  background: var(--panel);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+}
+
+.hero-copy {
+  padding: 34px;
+}
+
+.eyebrow,
+.chat-kicker,
+.card-title {
+  margin: 0 0 12px;
+  color: var(--accent-strong);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+h1,
+h2,
+.card-title {
+  font-family: "Source Serif 4", Georgia, serif;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  line-height: 0.95;
+  max-width: 10ch;
+}
+
+.lede,
+.hero-card p,
+.fine-print {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.lede {
+  margin: 18px 0 0;
+  font-size: 1.05rem;
+  max-width: 58ch;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.badges span,
+.pill,
+.quick-actions button {
+  border-radius: 999px;
+  border: 1px solid rgba(201, 79, 61, 0.18);
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+
+.badges span {
+  padding: 10px 14px;
+}
+
+.hero-card {
+  padding: 28px;
+  display: grid;
+  gap: 16px;
+  align-content: space-between;
+}
+
+.hero-card p {
+  margin: 0;
+}
+
+.chat-panel {
+  padding: 24px;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.chat-header h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.pill {
+  padding: 10px 14px;
+  font-size: 0.85rem;
+}
+
+.chat-log {
+  min-height: 360px;
+  max-height: 52vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 6px 2px 18px;
+}
+
+.message {
+  max-width: min(78%, 640px);
+  padding: 14px 16px;
+  border-radius: 18px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  animation: fadeUp 0.22s ease-out;
+}
+
+.message.user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, var(--accent), #df7d3e);
+  color: white;
+  border-bottom-right-radius: 6px;
+}
+
+.message.assistant {
+  align-self: flex-start;
+  background: var(--panel-strong);
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 6px;
+}
+
+.message.system {
+  align-self: center;
+  background: rgba(201, 79, 61, 0.1);
+  border: 1px dashed rgba(201, 79, 61, 0.26);
+  color: var(--accent-strong);
+}
+
+.message.emergency {
+  background: #4d1510;
+  color: #fff6f3;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.message .meta {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.78rem;
+  opacity: 0.78;
+}
+
+.quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-height: 46px;
+  margin-bottom: 16px;
+}
+
+.quick-actions button {
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.composer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.composer input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px 18px;
+  font: inherit;
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--text);
+  outline: none;
+}
+
+.composer input:focus {
+  border-color: rgba(201, 79, 61, 0.45);
+  box-shadow: 0 0 0 4px rgba(201, 79, 61, 0.12);
+}
+
+.composer button {
+  border: none;
+  border-radius: 16px;
+  padding: 0 22px;
+  background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+  color: white;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.fine-print {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 920px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .shell {
+    width: min(100% - 20px, 1120px);
+    padding-top: 18px;
+  }
+
+  .hero-copy,
+  .hero-card,
+  .chat-panel {
+    border-radius: 22px;
+  }
+
+  .hero-copy,
+  .hero-card,
+  .chat-panel {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .chat-header,
+  .composer {
+    grid-template-columns: 1fr;
+  }
+
+  .chat-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .message {
+    max-width: 92%;
+  }
+}
